@@ -7,6 +7,8 @@ from utils import log, guess_extension_from_mime_type, url_decode
 import setting, wget_parser
 
 if os.name == 'posix':
+    if not os.path.isdir(os.path.expanduser('~/.pywebget')):
+        os.makedirs(os.path.expanduser('~/.pywebget'))
     DB_NAME = os.path.expanduser('~/.pywebget/db.sqlite')
 else:
     DB_NAME = 'db.sqlite'
