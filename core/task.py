@@ -168,7 +168,9 @@ class Task(object):
                             if filename_from_content_disposition:
                                 filename = filename_from_content_disposition
                     if not filename:
-                        filename=self._get_filename_by_url(url)
+                        # If there's still no filename, get one from URL, just be
+                        # sure to consider redirects
+                        filename=self._get_filename_by_url(netfile.geturl())
                     content_type = None
                     if headers.has_key('content-type'):
                         # guess extension by content-type only when there is no content-disposition header
